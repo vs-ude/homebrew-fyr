@@ -3,9 +3,8 @@
 URL="$(npm view fyrlang dist.tarball 2>/dev/null)"
 VERSION="$(npm view fyrlang dist-tags.latest 2>/dev/null)"
 
-rm fyrlang-*
-wget -q "$URL"
-SHA="$(sha256sum fyrlang-*.tgz | cut -d ' ' -f1)"
+wget -q "$URL" -O fyrlang-current.tgz
+SHA="$(sha256sum fyrlang-current.tgz | cut -d ' ' -f1)"
 
 sed -i "s#url \".*\"#url \"$URL\"#" Formula/fyrlang.rb
 sed -i "s#sha256 \".*\"#sha256 \"$SHA\"#" Formula/fyrlang.rb
